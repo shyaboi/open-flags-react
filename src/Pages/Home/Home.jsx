@@ -35,8 +35,9 @@ const Home = (props) => {
               <a  href={"https://openflags.net/" + fl.country + "/region/" + fl.region + ".svg"}>
                 <LazyLoadImage
                 id='pics'
-                  placeholderSrc={baser}
+                  placeholderSrc={fl.directLink}
                   alt=""
+                  threshold='1'
                   effect="blur"
                   delayMethod="debounce"
                   src={fl.directLink} // use normal <img> attributes as props
