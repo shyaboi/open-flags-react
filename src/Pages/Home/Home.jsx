@@ -32,7 +32,8 @@ const Home = (props) => {
               <Col>
             <Card>
                  <LazyLoadImage
-      alt={Baser}
+    alt=''
+    effect="blur"
     //   height={image.height}
       src={fl.directLink} // use normal <img> attributes as props
       width="300" />
