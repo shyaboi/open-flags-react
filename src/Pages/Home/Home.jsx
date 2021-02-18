@@ -12,12 +12,13 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Container, Row, Col } from "reactstrap";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import fetchy from '../../Utils/Fetcher'
+import baser from "../../Utils/Baser";
 
 const Home = (props) => {
   const [flags, setFlags] = useState([]);
 
   useEffect(() => {
-    fetchy("http://localhost:4443/all").then(async (data) => {
+    fetchy("https://openflags.net/all").then(async (data) => {
       let allFlags = await data.allFlags;
       setFlags(allFlags);
     });
@@ -26,21 +27,21 @@ const Home = (props) => {
   return (
     <Container className="mt-5" fluid>
       <br></br>
-    <Row xl="3" md="2" xs="1" fluid>
+    <Row xl='3' lg='2' md="1" xs="1" fluid>
       {flags.map((fl) => {
         return (
           <Col className="mt-5">
-            <Card>
-              <a  href={"http://localhost:4443/" + fl.country + "/region/" + fl.region + ".svg"}>
+            <Card >
+              <a  href={"https://openflags.net/" + fl.country + "/region/" + fl.region + ".svg"}>
                 <LazyLoadImage
                 id='pics'
-                  placeholderSrc={fl.directLink}
+                  placeholderSrc={baser}
                   alt=""
                   effect="blur"
-                  
+                  delayMethod="debounce"
                   src={fl.directLink} // use normal <img> attributes as props
-                  height="300px"
-                  width="450px"
+                  width="100%"
+                  height='300vm'
                 />
               </a>
               <CardBody>
@@ -55,10 +56,10 @@ const Home = (props) => {
                  ISO 3166 Code(s):  {fl.ISO3166}
                 </CardText>
                 <Col>
-                <Button  className='button mt-3 mb-3 purple-gradient' color="other" size="lg" block>Direct Image Link</Button>
+                <Button href={"https://openflags.net/" + fl.country + "/region/" + fl.region + ".svg"} className='button mt-3 mb-3 purple-gradient' color="other" size="lg" block>Direct Image Link</Button>
                 </Col>
                 <Col>
-                <Button  className='button mt-3 mb-3' color="dinus" size="lg" block>JSON Link</Button>
+                <Button href={"https://openflags.net/api/json/flagInfo/" + fl.country +'/'+ fl.region} className='button mt-3 mb-3' color="dinus" size="lg" block>JSON Link</Button>
                 </Col>
                 {/* <Col>
                 <Button className='button mt-3 mb-3 bg-cc' color="primary" size="lg" block>Button</Button>

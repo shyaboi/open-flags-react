@@ -19,8 +19,11 @@ $theme-colors: (
 }
 
 #pics{
-  box-shadow: 0px 12px 25px 1px rgba(0, 0, 0, 0.5);
--webkit-box-shadow: 0px 12px 25px 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 5px 44px 2px #000000; 
+  box-shadow: 5px 5px 44px 2px #000000;
+}
+img{
+  object-fit: cover;
 }
 // .button{
 // background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
