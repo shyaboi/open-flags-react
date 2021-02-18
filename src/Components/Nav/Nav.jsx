@@ -27,7 +27,7 @@ const Navi = (props) => {
   const [rando, setRando] = useState("");
 
   useEffect(() => {
-    fetchy("http://localhost:4443/rando").then(async (data) => {
+    fetchy("https://openflags.net/rando").then(async (data) => {
       let rando = await data;
       console.log(rando);
       setRando(rando);
