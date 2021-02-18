@@ -46,10 +46,10 @@ const Navi = (props) => {
           src={rando} // use normal <img> attributes as props
           height="55px"
           width="100px"
-        />
-      <NavbarBrand className='ml-4' lhref="/">
+        /> <a href="/">
+      <NavbarBrand className='ml-4 brand' lhref="/">
         <h1>Open Flags API</h1>
-      </NavbarBrand>
+      </NavbarBrand></a>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>

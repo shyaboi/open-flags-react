@@ -43,6 +43,7 @@ const Home = (props) => {
                   src={fl.directLink} // use normal <img> attributes as props
                   width="100%"
                   height='300vm'
+                  opacity='50'
                 />
               </a>
               <CardBody>
