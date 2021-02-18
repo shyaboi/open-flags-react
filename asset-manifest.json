@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/shyaboi/open-flags-react/static/css/main.14d30801.chunk.css",
-    "main.js": "/shyaboi/open-flags-react/static/js/main.d3333ffc.chunk.js",
-    "main.js.map": "/shyaboi/open-flags-react/static/js/main.d3333ffc.chunk.js.map",
-    "runtime-main.js": "/shyaboi/open-flags-react/static/js/runtime-main.0e894e91.js",
-    "runtime-main.js.map": "/shyaboi/open-flags-react/static/js/runtime-main.0e894e91.js.map",
-    "static/css/2.aedf3aff.chunk.css": "/shyaboi/open-flags-react/static/css/2.aedf3aff.chunk.css",
-    "static/js/2.24438cc9.chunk.js": "/shyaboi/open-flags-react/static/js/2.24438cc9.chunk.js",
-    "static/js/2.24438cc9.chunk.js.map": "/shyaboi/open-flags-react/static/js/2.24438cc9.chunk.js.map",
-    "static/js/3.d0e5deaf.chunk.js": "/shyaboi/open-flags-react/static/js/3.d0e5deaf.chunk.js",
-    "static/js/3.d0e5deaf.chunk.js.map": "/shyaboi/open-flags-react/static/js/3.d0e5deaf.chunk.js.map",
-    "index.html": "/shyaboi/open-flags-react/index.html",
-    "service-worker.js": "/shyaboi/open-flags-react/service-worker.js",
-    "service-worker.js.map": "/shyaboi/open-flags-react/service-worker.js.map",
-    "static/css/2.aedf3aff.chunk.css.map": "/shyaboi/open-flags-react/static/css/2.aedf3aff.chunk.css.map",
-    "static/css/main.14d30801.chunk.css.map": "/shyaboi/open-flags-react/static/css/main.14d30801.chunk.css.map",
-    "static/js/2.24438cc9.chunk.js.LICENSE.txt": "/shyaboi/open-flags-react/static/js/2.24438cc9.chunk.js.LICENSE.txt"
+    "main.css": "/open-flags-react/static/css/main.14d30801.chunk.css",
+    "main.js": "/open-flags-react/static/js/main.91fec815.chunk.js",
+    "main.js.map": "/open-flags-react/static/js/main.91fec815.chunk.js.map",
+    "runtime-main.js": "/open-flags-react/static/js/runtime-main.6b0fd9bb.js",
+    "runtime-main.js.map": "/open-flags-react/static/js/runtime-main.6b0fd9bb.js.map",
+    "static/css/2.aedf3aff.chunk.css": "/open-flags-react/static/css/2.aedf3aff.chunk.css",
+    "static/js/2.24438cc9.chunk.js": "/open-flags-react/static/js/2.24438cc9.chunk.js",
+    "static/js/2.24438cc9.chunk.js.map": "/open-flags-react/static/js/2.24438cc9.chunk.js.map",
+    "static/js/3.d0e5deaf.chunk.js": "/open-flags-react/static/js/3.d0e5deaf.chunk.js",
+    "static/js/3.d0e5deaf.chunk.js.map": "/open-flags-react/static/js/3.d0e5deaf.chunk.js.map",
+    "index.html": "/open-flags-react/index.html",
+    "service-worker.js": "/open-flags-react/service-worker.js",
+    "service-worker.js.map": "/open-flags-react/service-worker.js.map",
+    "static/css/2.aedf3aff.chunk.css.map": "/open-flags-react/static/css/2.aedf3aff.chunk.css.map",
+    "static/css/main.14d30801.chunk.css.map": "/open-flags-react/static/css/main.14d30801.chunk.css.map",
+    "static/js/2.24438cc9.chunk.js.LICENSE.txt": "/open-flags-react/static/js/2.24438cc9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.0e894e91.js",
+    "static/js/runtime-main.6b0fd9bb.js",
     "static/css/2.aedf3aff.chunk.css",
     "static/js/2.24438cc9.chunk.js",
     "static/css/main.14d30801.chunk.css",
-    "static/js/main.d3333ffc.chunk.js"
+    "static/js/main.91fec815.chunk.js"
   ]
 }
