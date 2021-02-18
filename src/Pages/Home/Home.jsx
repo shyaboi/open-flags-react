@@ -8,10 +8,11 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
-import fetchy from "../../Utils/Fetcher";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Container, Row, Col } from 'reactstrap';
-import Baser from '../../assets/baser'
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Container, Row, Col } from "reactstrap";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import fetchy from '../../Utils/Fetcher'
+
 const Home = (props) => {
   const [flags, setFlags] = useState([]);
 
@@ -20,40 +21,55 @@ const Home = (props) => {
       let allFlags = await data.allFlags;
       setFlags(allFlags);
     });
-  });
+  }, []);
 
   return (
-    <Row md="3">
-
-
-      <Suspense fallback={<div>Loading...</div>}>
-        {flags.map((fl) => {
-            return (
-              <Col>
+    <Container className="mt-5" fluid>
+      <br></br>
+    <Row xl="3" md="2" xs="1" fluid>
+      {flags.map((fl) => {
+        return (
+          <Col className="mt-5">
             <Card>
-                 <LazyLoadImage
-    alt=''
-    effect="blur"
-    //   height={image.height}
-      src={fl.directLink} // use normal <img> attributes as props
-      width="300" />
-            <CardBody>
-                <CardTitle tag="h5">Card title</CardTitle>
+              <a  href={"http://localhost:4443/" + fl.country + "/region/" + fl.region + ".svg"}>
+                <LazyLoadImage
+                id='pics'
+                  placeholderSrc={fl.directLink}
+                  alt=""
+                  effect="blur"
+                  
+                  src={fl.directLink} // use normal <img> attributes as props
+                  height="300px"
+                  width="450px"
+                />
+              </a>
+              <CardBody>
+                <CardTitle tag="h5">
+                  Region: {fl.region.charAt(0).toUpperCase() + fl.region.slice(1)}
+                </CardTitle>
                 <CardSubtitle tag="h6" className="mb-2 text-muted">
-                  Card subtitle
+                  Country:{" "}
+                  {fl.country.charAt(0).toUpperCase() + fl.country.slice(1)}
                 </CardSubtitle>
                 <CardText>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                 ISO 3166 Code(s):  {fl.ISO3166}
                 </CardText>
-                <Button>Button</Button>
+                <Col>
+                <Button  className='button mt-3 mb-3 purple-gradient' color="other" size="lg" block>Direct Image Link</Button>
+                </Col>
+                <Col>
+                <Button  className='button mt-3 mb-3' color="dinus" size="lg" block>JSON Link</Button>
+                </Col>
+                {/* <Col>
+                <Button className='button mt-3 mb-3 bg-cc' color="primary" size="lg" block>Button</Button>
+                </Col> */}
               </CardBody>
             </Card>
-  </Col>
-          );
-        })}
-      </Suspense>
+          </Col>
+        );
+      })}
     </Row>
+    </Container>
   );
 };
 export default Home;
