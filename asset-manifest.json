@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/shyaboi/open-flags-react/static/css/main.f06f6804.chunk.css",
-    "main.js": "/shyaboi/open-flags-react/static/js/main.284af63d.chunk.js",
-    "main.js.map": "/shyaboi/open-flags-react/static/js/main.284af63d.chunk.js.map",
+    "main.js": "/shyaboi/open-flags-react/static/js/main.843659c5.chunk.js",
+    "main.js.map": "/shyaboi/open-flags-react/static/js/main.843659c5.chunk.js.map",
     "runtime-main.js": "/shyaboi/open-flags-react/static/js/runtime-main.0e894e91.js",
     "runtime-main.js.map": "/shyaboi/open-flags-react/static/js/runtime-main.0e894e91.js.map",
     "static/css/2.aedf3aff.chunk.css": "/shyaboi/open-flags-react/static/css/2.aedf3aff.chunk.css",
@@ -22,6 +22,6 @@
     "static/css/2.aedf3aff.chunk.css",
     "static/js/2.d2662603.chunk.js",
     "static/css/main.f06f6804.chunk.css",
-    "static/js/main.284af63d.chunk.js"
+    "static/js/main.843659c5.chunk.js"
   ]
 }
