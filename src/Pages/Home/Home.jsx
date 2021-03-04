@@ -20,6 +20,8 @@ import { Container, Row, Col } from "reactstrap";
 import fetchy from "../../Utils/Fetcher";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
+let filteredFlags = [];
+let checkedFilter = [];
 const Home = (props) => {
   const [flags, setFlags] = useState([]);
   const [filterFlags, setFilterFlags] = useState([]);
@@ -30,20 +32,26 @@ const Home = (props) => {
   const toggleSort = () => setDropdownSortOpen((prevState) => !prevState);
   const toggleFilter = () => setDropdownFilterOpen((prevState) => !prevState);
 
-  useEffect(() => {
+  const ok =()=> {
     fetchy("https://openflags.net/all").then(async (data) => {
-      let allFlags = await data.allFlags;
-      setFlags(allFlags);
+      const allFlagz = await data.allFlags;
+      setFlags(allFlagz);
       //make a set to take out repeat vals
-      let filterSet = new Set();
+      const filterSet = new Set();
       // foreach all flags and return filterSet unique vals
-      allFlags.forEach((e) => {
+      allFlagz.forEach((e) => {
         filterSet.add(e.country);
       });
-      let fSet = [...filterSet];
+      const fSet = [...filterSet];
       // console.log(fSet)
-      setFilterFlags(fSet);
+      setCheckedFlags(fSet);
+      // setFilterFlags(fSet);
+      
     });
+  }
+
+  useEffect(() => {
+ok()
   }, []);
 
   const sortAZ = () => {
@@ -81,19 +89,34 @@ const Home = (props) => {
   }
 
   const handleChange = (e) => {
-    // this.props.onChange(e.target.checked);
-    let checkedFilter = filterFlags;
+    // if(checkedFilter=[]){console.log('shits empty')}
+
     if (e.target.checked === false) {
+      console.log(filterFlags)
+
       let filterIndex = checkedFilter.indexOf(e.target.name);
       checkedFilter.splice(filterIndex, 1);
       console.log(e.target.checked);
       // console.log(checkedFilter)
+      fetchy("https://openflags.net/all").then(async (data) => {
+        let allFlags = await data.allFlags;
+        for (let i = 0; i < checkedFilter.length; i++) {
+          const el = checkedFilter[i];
+          let fillyFlags = allFlags.filter((x) => {
+            return x.country === el;
+          });
+          filteredFlags.push(...fillyFlags);
+        }
+       console.log(checkedFilter)
+        setFlags(filteredFlags)
+      });
       return;
     }
     if (e.target.checked === true) {
       // let filterIndex = checkedFilter.indexOf(e.target.name)
+      console.log(filterFlags)
       checkedFilter.push(e.target.name);
-      // console.log(checkedFilter)
+      console.log(checkedFilter)
       fetchy("https://openflags.net/all").then(async (data) => {
         let allFlags = await data.allFlags;
         let filteredFlags = [];
@@ -104,8 +127,8 @@ const Home = (props) => {
           });
           filteredFlags.push(...fillyFlags);
         }
-        console.log(filteredFlags)
-       console.log(flags)
+       console.log(checkedFilter)
+
         setFlags(filteredFlags)
       });
       return;
@@ -151,13 +174,12 @@ const Home = (props) => {
             <DropdownMenu>
               <DropdownItem header>Filter by Country</DropdownItem>
               <Form>
-                {filterFlags.map((ff) => {
+                {checkedFlags.map((ff) => {
                   return (
                     <FormGroup check inline>
                       <Input
                         id="InlineCheckboxes-checkbox-1"
                         name={ff}
-                        defaultChecked={ff}
                         onChange={handleChange}
                         type="checkbox"
                       />
