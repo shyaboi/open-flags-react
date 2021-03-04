@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Collapse,
   Navbar,
@@ -18,9 +18,15 @@ import {
   Input,
   FormText,
 } from "reactstrap";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import fetchy from "../../Utils/Fetcher";
 import baser from "../../Utils/Baser";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import Home from "../../Pages/Home/Home";
 
 const Navi = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,11 +37,14 @@ const Navi = (props) => {
       let rando = await data;
       console.log(rando);
       setRando(rando);
+
     });
   }, []);
 
   const toggle = () => setIsOpen(!isOpen);
   return (
+    <Router>
+      <div>
     <Navbar color="light" light expand="md" className="fixed-top nav">
         <LazyLoadImage
           id="pics"
@@ -54,10 +63,10 @@ const Navi = (props) => {
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavLink href="/Home/">Home</NavLink>
+            <NavLink href="/">Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/Sort/">Sort</NavLink>
+            <NavLink href="/sort">Docs</NavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
@@ -85,6 +94,25 @@ const Navi = (props) => {
         </NavbarText>
       </Collapse>
     </Navbar>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div>
+      <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+s        </Switch>
+    </div>
+    </Router>
   );
 };
 
