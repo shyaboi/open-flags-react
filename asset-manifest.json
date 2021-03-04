@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/open-flags-react/static/css/main.14d30801.chunk.css",
-    "main.js": "/open-flags-react/static/js/main.91fec815.chunk.js",
-    "main.js.map": "/open-flags-react/static/js/main.91fec815.chunk.js.map",
-    "runtime-main.js": "/open-flags-react/static/js/runtime-main.6b0fd9bb.js",
-    "runtime-main.js.map": "/open-flags-react/static/js/runtime-main.6b0fd9bb.js.map",
+    "main.js": "/open-flags-react/static/js/main.d9a78456.chunk.js",
+    "main.js.map": "/open-flags-react/static/js/main.d9a78456.chunk.js.map",
+    "runtime-main.js": "/open-flags-react/static/js/runtime-main.fad7ec37.js",
+    "runtime-main.js.map": "/open-flags-react/static/js/runtime-main.fad7ec37.js.map",
     "static/css/2.aedf3aff.chunk.css": "/open-flags-react/static/css/2.aedf3aff.chunk.css",
-    "static/js/2.24438cc9.chunk.js": "/open-flags-react/static/js/2.24438cc9.chunk.js",
-    "static/js/2.24438cc9.chunk.js.map": "/open-flags-react/static/js/2.24438cc9.chunk.js.map",
-    "static/js/3.d0e5deaf.chunk.js": "/open-flags-react/static/js/3.d0e5deaf.chunk.js",
-    "static/js/3.d0e5deaf.chunk.js.map": "/open-flags-react/static/js/3.d0e5deaf.chunk.js.map",
+    "static/js/2.aee97af6.chunk.js": "/open-flags-react/static/js/2.aee97af6.chunk.js",
+    "static/js/2.aee97af6.chunk.js.map": "/open-flags-react/static/js/2.aee97af6.chunk.js.map",
+    "static/js/3.2044c5f4.chunk.js": "/open-flags-react/static/js/3.2044c5f4.chunk.js",
+    "static/js/3.2044c5f4.chunk.js.map": "/open-flags-react/static/js/3.2044c5f4.chunk.js.map",
     "index.html": "/open-flags-react/index.html",
     "service-worker.js": "/open-flags-react/service-worker.js",
     "service-worker.js.map": "/open-flags-react/service-worker.js.map",
     "static/css/2.aedf3aff.chunk.css.map": "/open-flags-react/static/css/2.aedf3aff.chunk.css.map",
     "static/css/main.14d30801.chunk.css.map": "/open-flags-react/static/css/main.14d30801.chunk.css.map",
-    "static/js/2.24438cc9.chunk.js.LICENSE.txt": "/open-flags-react/static/js/2.24438cc9.chunk.js.LICENSE.txt"
+    "static/js/2.aee97af6.chunk.js.LICENSE.txt": "/open-flags-react/static/js/2.aee97af6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.6b0fd9bb.js",
+    "static/js/runtime-main.fad7ec37.js",
     "static/css/2.aedf3aff.chunk.css",
-    "static/js/2.24438cc9.chunk.js",
+    "static/js/2.aee97af6.chunk.js",
     "static/css/main.14d30801.chunk.css",
-    "static/js/main.91fec815.chunk.js"
+    "static/js/main.d9a78456.chunk.js"
   ]
 }
