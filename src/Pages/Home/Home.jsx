@@ -88,7 +88,7 @@ const Home = (props) => {
   }
 
   const handleChange = (e) => {
-    while (checkedFilter != [""]) {
+    // while (checkedFilter != [""]) {
       // let filterIndex = checkedFilter.indexOf(e.target.name)
       let tar = e.target.name;
       if (checkedFilter.includes(tar)) {
@@ -137,7 +137,7 @@ const Home = (props) => {
         setFlags(filteredFlags);
       });
       return;
-    }
+    // }
   };
 
   const sortCountryAZ = () => {
