@@ -110,7 +110,7 @@ const Navi = (props) => {
           <Route exact path="/">
             <Home />
           </Route>
-        </Switch>
+s        </Switch>
     </div>
     </Router>
   );

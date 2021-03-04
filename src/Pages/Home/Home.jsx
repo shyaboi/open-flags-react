@@ -14,10 +14,19 @@ import {
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Container, Row, Col } from "reactstrap";
 import fetchy from "../../Utils/Fetcher";
-import baser from "../../Utils/Baser";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Home = (props) => {
+  useEffect(() => {
+    fetchy("https://openflags.net/all").then(async (data) => {
+      let allFlags = await data.allFlags;
+      setFlags(allFlags);
+      console.log()
+    });
+  }, []);
+
+
+  
   const [flags, setFlags] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -25,6 +34,7 @@ const Home = (props) => {
 
   const sortAZ = ()=> {
     fetchy("https://openflags.net/all").then(async (data) => {
+      console.log(flags)
       let allFlags = await data.allFlags;
       setFlags(allFlags);
     });
@@ -37,18 +47,42 @@ const Home = (props) => {
     });
   }
 
+  function compareAZ( a, b ) {
+    if ( a.country < b.country ){
+      return -1;
+    }
+    if ( a.country > b.country ){
+      return 1;
+    }
+    return 0;
+  }
+  function compareZA( a, b ) {
+    if ( a.country < b.country ){
+      return 1;
+    }
+    if ( a.country > b.country ){
+      return -1;
+    }
+    return 0;
+  }
+
   const sortCountryAZ = ()=> {
     fetchy("https://openflags.net/all").then(async (data) => {
-      console.log(data)
+      let allFlags = await data.allFlags;
+    const sortObject = allFlags.sort(compareAZ)
+    console.log(sortObject)
+      setFlags(sortObject);
+    });
+  }
+  const sortCountryZA = ()=> {
+    fetchy("https://openflags.net/all").then(async (data) => {
+      let allFlags = await data.allFlags;
+    const sortObject = allFlags.sort(compareZA)
+    console.log(sortObject)
+      setFlags(sortObject);
     });
   }
 
-  useEffect(() => {
-    fetchy("https://openflags.net/all").then(async (data) => {
-      let allFlags = await data.allFlags;
-      setFlags(allFlags);
-    });
-  }, []);
 
   return (
     <Container className="mt-5" fluid>
@@ -64,6 +98,7 @@ const Home = (props) => {
         <DropdownItem onClick={sortAZ}>Region A ~ Z</DropdownItem>
         <DropdownItem onClick={sortZA}>Region Z ~ A</DropdownItem>
         <DropdownItem onClick={sortCountryAZ}>Country A ~ Z</DropdownItem>
+        <DropdownItem onClick={sortCountryZA}>Country Z ~ A</DropdownItem>
         <DropdownItem divider />
         <DropdownItem>Foo Action</DropdownItem>
         <DropdownItem>Bar Action</DropdownItem>
