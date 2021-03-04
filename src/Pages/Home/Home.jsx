@@ -32,7 +32,7 @@ const Home = (props) => {
   const toggleSort = () => setDropdownSortOpen((prevState) => !prevState);
   const toggleFilter = () => setDropdownFilterOpen((prevState) => !prevState);
 
-  const ok =()=> {
+  const ok = () => {
     fetchy("https://openflags.net/all").then(async (data) => {
       const allFlagz = await data.allFlags;
       setFlags(allFlagz);
@@ -46,12 +46,11 @@ const Home = (props) => {
       // console.log(fSet)
       setCheckedFlags(fSet);
       // setFilterFlags(fSet);
-      
     });
-  }
+  };
 
   useEffect(() => {
-ok()
+    ok();
   }, []);
 
   const sortAZ = () => {
@@ -89,34 +88,40 @@ ok()
   }
 
   const handleChange = (e) => {
-    // if(checkedFilter=[]){console.log('shits empty')}
-
-    if (e.target.checked === false) {
-      console.log(filterFlags)
-
-      let filterIndex = checkedFilter.indexOf(e.target.name);
-      checkedFilter.splice(filterIndex, 1);
-      console.log(e.target.checked);
-      // console.log(checkedFilter)
-      fetchy("https://openflags.net/all").then(async (data) => {
-        let allFlags = await data.allFlags;
-        for (let i = 0; i < checkedFilter.length; i++) {
-          const el = checkedFilter[i];
-          let fillyFlags = allFlags.filter((x) => {
-            return x.country === el;
-          });
-          filteredFlags.push(...fillyFlags);
-        }
-       console.log(checkedFilter)
-        setFlags(filteredFlags)
-      });
-      return;
-    }
-    if (e.target.checked === true) {
+    while (checkedFilter != [""]) {
       // let filterIndex = checkedFilter.indexOf(e.target.name)
-      console.log(filterFlags)
+      let tar = e.target.name;
+      if (checkedFilter.includes(tar)) {
+        // console.log(filterFlags)
+        let filterIndex = checkedFilter.indexOf(tar);
+        checkedFilter.splice(filterIndex, 1);
+        console.log(checkedFilter);
+        fetchy("https://openflags.net/all").then(async (data) => {
+          let allFlags = await data.allFlags;
+          let filteredFlags = [];
+          for (let i = 0; i < checkedFilter.length; i++) {
+            const el = checkedFilter[i];
+            let fillyFlags = allFlags.filter((x) => {
+              return x.country === el;
+            });
+            filteredFlags.push(...fillyFlags);
+          }
+          console.log(checkedFilter);
+
+          setFlags(filteredFlags);
+          if (checkedFilter[0] == null) {
+            fetchy("https://openflags.net/all").then(async (data) => {
+              const allFlagz = await data.allFlags;
+              setFlags(allFlagz);
+              return;
+            });
+          }
+        });
+        return;
+      }
+      // console.log(filterFlags)
       checkedFilter.push(e.target.name);
-      console.log(checkedFilter)
+      console.log(checkedFilter);
       fetchy("https://openflags.net/all").then(async (data) => {
         let allFlags = await data.allFlags;
         let filteredFlags = [];
@@ -127,9 +132,9 @@ ok()
           });
           filteredFlags.push(...fillyFlags);
         }
-       console.log(checkedFilter)
+        console.log(checkedFilter);
 
-        setFlags(filteredFlags)
+        setFlags(filteredFlags);
       });
       return;
     }
