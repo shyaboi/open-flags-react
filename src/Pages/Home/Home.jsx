@@ -10,6 +10,10 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Form,
+  FormGroup,
+  Label,
+  Input,
 } from "reactstrap";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Container, Row, Col } from "reactstrap";
@@ -17,94 +21,125 @@ import fetchy from "../../Utils/Fetcher";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Home = (props) => {
+  const [flags, setFlags] = useState([]);
+  const [filterFlags, setFilterFlags] = useState([]);
+  const [dropdownSortOpen, setDropdownSortOpen] = useState(false);
+  const [dropdownFilterOpen, setDropdownFilterOpen] = useState(false);
+
+  const toggleSort = () => setDropdownSortOpen((prevState) => !prevState);
+  const toggleFilter = () => setDropdownFilterOpen((prevState) => !prevState);
+
   useEffect(() => {
     fetchy("https://openflags.net/all").then(async (data) => {
       let allFlags = await data.allFlags;
       setFlags(allFlags);
-      console.log()
-    });
-  }, []);
+        //make a set to take out repeat vals
+        let filterSet = new Set();
+        // foreach all flags and return filterSet unique vals
+        allFlags.forEach( e => {
+          filterSet.add( e.country)
+        });
+        let fSet =  [...filterSet]
+        // console.log(fSet)
+        setFilterFlags(fSet)
+      });
+    }, []);
 
-
-  
-  const [flags, setFlags] = useState([]);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggle = () => setDropdownOpen(prevState => !prevState);
-
-  const sortAZ = ()=> {
+  const sortAZ = () => {
     fetchy("https://openflags.net/all").then(async (data) => {
-      console.log(flags)
+      console.log(flags);
       let allFlags = await data.allFlags;
       setFlags(allFlags);
     });
-  }
+  };
 
-  const sortZA = ()=> {
+  const sortZA = () => {
     fetchy("https://openflags.net/all").then(async (data) => {
       let allFlags = await data.allFlags;
       setFlags(allFlags.reverse());
     });
-  }
+  };
 
-  function compareAZ( a, b ) {
-    if ( a.country < b.country ){
+  function compareAZ(a, b) {
+    if (a.country < b.country) {
       return -1;
     }
-    if ( a.country > b.country ){
+    if (a.country > b.country) {
       return 1;
     }
     return 0;
   }
-  function compareZA( a, b ) {
-    if ( a.country < b.country ){
+  function compareZA(a, b) {
+    if (a.country < b.country) {
       return 1;
     }
-    if ( a.country > b.country ){
+    if (a.country > b.country) {
       return -1;
     }
     return 0;
   }
 
-  const sortCountryAZ = ()=> {
-    fetchy("https://openflags.net/all").then(async (data) => {
-      let allFlags = await data.allFlags;
-    const sortObject = allFlags.sort(compareAZ)
-    console.log(sortObject)
-      setFlags(sortObject);
-    });
-  }
-  const sortCountryZA = ()=> {
-    fetchy("https://openflags.net/all").then(async (data) => {
-      let allFlags = await data.allFlags;
-    const sortObject = allFlags.sort(compareZA)
-    console.log(sortObject)
-      setFlags(sortObject);
-    });
+  const handleChange = (e)=> {
+    // this.props.onChange(e.target.checked);
+    console.log(e.target.name)
   }
 
+  const sortCountryAZ = () => {
+    fetchy("https://openflags.net/all").then(async (data) => {
+      let allFlags = await data.allFlags;
+      const sortObject = allFlags.sort(compareAZ);
+      console.log(sortObject);
+      setFlags(sortObject);
+    });
+  };
+  const sortCountryZA = () => {
+    fetchy("https://openflags.net/all").then(async (data) => {
+      let allFlags = await data.allFlags;
+      const sortObject = allFlags.sort(compareZA);
+      console.log(sortObject);
+      setFlags(sortObject);
+    });
+  };
 
   return (
     <Container className="mt-5" fluid>
       <br></br>
       <Row className="mt-5">
         <Col>
-        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret>
-        Sort Flags By
-      </DropdownToggle>
-      <DropdownMenu>
-        <DropdownItem header>Sort By</DropdownItem>
-        <DropdownItem onClick={sortAZ}>Region A ~ Z</DropdownItem>
-        <DropdownItem onClick={sortZA}>Region Z ~ A</DropdownItem>
-        <DropdownItem onClick={sortCountryAZ}>Country A ~ Z</DropdownItem>
-        <DropdownItem onClick={sortCountryZA}>Country Z ~ A</DropdownItem>
-        <DropdownItem divider />
-        <DropdownItem>Foo Action</DropdownItem>
-        <DropdownItem>Bar Action</DropdownItem>
-        <DropdownItem>Quo Action</DropdownItem>
-      </DropdownMenu>
-    </Dropdown></Col>
+          <Dropdown isOpen={dropdownSortOpen} toggle={toggleSort}>
+            <DropdownToggle caret>Sort Flags By</DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem header>Sort By</DropdownItem>
+              <DropdownItem onClick={sortAZ}>Region A ~ Z</DropdownItem>
+              <DropdownItem onClick={sortZA}>Region Z ~ A</DropdownItem>
+              <DropdownItem onClick={sortCountryAZ}>Country A ~ Z</DropdownItem>
+              <DropdownItem onClick={sortCountryZA}>Country Z ~ A</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </Col>
+        <Col>
+          <Dropdown isOpen={dropdownFilterOpen} toggle={toggleFilter}>
+            <DropdownToggle caret>Filter Flags By</DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem header>Filter by Country</DropdownItem>
+              <Form>
+                {filterFlags.map((ff) => {
+                  return (
+                    <FormGroup check inline>
+                      <Input id="InlineCheckboxes-checkbox-1"
+                      name={ff}
+                      defaultChecked={ff}
+                      onChange={handleChange} type="checkbox" />
+                      <Label for="InlineCheckboxes-checkbox-1" check>
+                        {ff}
+                      </Label>
+                    </FormGroup>
+                  );
+                })}
+              </Form>
+            </DropdownMenu>
+          </Dropdown>
+        </Col>
       </Row>
 
       <Row xl="3" lg="2" md="1" xs="1" fluid>

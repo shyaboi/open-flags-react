@@ -45,7 +45,7 @@ const Navi = (props) => {
   return (
     <Router>
       <div>
-    <Navbar color="light" light expand="md" className="fixed-top nav">
+    <Navbar light expand="md" className="fixed-top nav">
         <LazyLoadImage
           id="pics"
           placeholderSrc={baser}
@@ -56,17 +56,17 @@ const Navi = (props) => {
           height="55px"
           width="100px"
         /> <a href="/">
-      <NavbarBrand className='ml-4 brand' lhref="/">
-        <h1>Open Flags API</h1>
+      <NavbarBrand className='ml-4 brand' href="/open-flags-react">
+        <p>Open Flags API</p>
       </NavbarBrand></a>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavLink href="/">Home</NavLink>
+            <NavLink href="/open-flags-react">Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/sort">Docs</NavLink>
+            <NavLink href="/docs">Docs</NavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
@@ -107,7 +107,7 @@ const Navi = (props) => {
 
 <div>
       <Switch>
-          <Route exact path="/">
+          <Route exact path="/open-flags-react">
             <Home />
           </Route>
 s        </Switch>
