@@ -21,20 +21,29 @@ import fetchy from "../../Utils/Fetcher";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Home = (props) => {
-  useEffect(() => {
-    fetchy("https://openflags.net/all").then(async (data) => {
-      let allFlags = await data.allFlags;
-      setFlags(allFlags);
-      console.log();
-    });
-  }, []);
-
   const [flags, setFlags] = useState([]);
+  const [filterFlags, setFilterFlags] = useState([]);
   const [dropdownSortOpen, setDropdownSortOpen] = useState(false);
   const [dropdownFilterOpen, setDropdownFilterOpen] = useState(false);
 
   const toggleSort = () => setDropdownSortOpen((prevState) => !prevState);
   const toggleFilter = () => setDropdownFilterOpen((prevState) => !prevState);
+
+  useEffect(() => {
+    fetchy("https://openflags.net/all").then(async (data) => {
+      let allFlags = await data.allFlags;
+      setFlags(allFlags);
+        //make a set to take out repeat vals
+        let filterSet = new Set();
+        // foreach all flags and return filterSet unique vals
+        allFlags.forEach( e => {
+          filterSet.add( e.country)
+        });
+        let fSet =  [...filterSet]
+        // console.log(fSet)
+        setFilterFlags(fSet)
+      });
+    }, []);
 
   const sortAZ = () => {
     fetchy("https://openflags.net/all").then(async (data) => {
@@ -109,24 +118,17 @@ const Home = (props) => {
             <DropdownMenu>
               <DropdownItem header>Filter by Country</DropdownItem>
               <Form>
-              {flags.map((fl) => {
-                return (
-                  <FormGroup check inline>
-        <Input id="InlineCheckboxes-checkbox-1" type="checkbox" />
-        <Label for="InlineCheckboxes-checkbox-1" check>
-          {fl.country}
-        </Label>
-      </FormGroup>
-                )
-              })}
-      
-      <FormGroup check inline>
-        <Input id="InlineCheckboxes-checkbox-2" type="checkbox" />
-        <Label for="InlineCheckboxes-checkbox-2" check>
-          Some other input
-        </Label>
-      </FormGroup>
-    </Form>
+                {filterFlags.map((ff) => {
+                  return (
+                    <FormGroup check inline>
+                      <Input id="InlineCheckboxes-checkbox-1" type="checkbox" />
+                      <Label for="InlineCheckboxes-checkbox-1" check>
+                        {ff}
+                      </Label>
+                    </FormGroup>
+                  );
+                })}
+              </Form>
             </DropdownMenu>
           </Dropdown>
         </Col>
