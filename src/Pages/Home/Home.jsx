@@ -79,6 +79,11 @@ const Home = (props) => {
     return 0;
   }
 
+  const handleChange = (e)=> {
+    // this.props.onChange(e.target.checked);
+    console.log(e.target.name)
+  }
+
   const sortCountryAZ = () => {
     fetchy("https://openflags.net/all").then(async (data) => {
       let allFlags = await data.allFlags;
@@ -121,7 +126,10 @@ const Home = (props) => {
                 {filterFlags.map((ff) => {
                   return (
                     <FormGroup check inline>
-                      <Input id="InlineCheckboxes-checkbox-1" type="checkbox" />
+                      <Input id="InlineCheckboxes-checkbox-1"
+                      name={ff}
+                      defaultChecked={ff}
+                      onChange={handleChange} type="checkbox" />
                       <Label for="InlineCheckboxes-checkbox-1" check>
                         {ff}
                       </Label>
