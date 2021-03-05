@@ -27,6 +27,8 @@ import {
 import fetchy from "../../Utils/Fetcher";
 import baser from "../../Utils/Baser";
 import Home from "../../Pages/Home/Home";
+import Docs from "../../Pages/Docs/Docs";
+import FAQs from "../../Pages/FAQs/FAQs";
 
 const Navi = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -102,6 +104,12 @@ const Navi = (props) => {
       <Switch>
           <Route exact path="/open-flags-react">
             <Home />
+          </Route>
+          <Route exact path="/docs">
+            <Docs />
+          </Route>
+          <Route exact path="/faqs">
+            <FAQs />
           </Route>
 s        </Switch>
     </div>

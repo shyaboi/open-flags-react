@@ -49,6 +49,7 @@ h5{
   visibility: hidden;
   position: absolute;
   opacity: 0;
+  left: 0;
   transition: visibility 0s linear 500ms, opacity 500ms;
 }
 .ninja{
@@ -60,5 +61,7 @@ h5{
 }
 
 .dropButt{
+
+  
 
 }
