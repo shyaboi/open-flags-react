@@ -205,10 +205,8 @@ const Home = (props) => {
             </Dropdown>
           </Col>
           <Col>
-            {/* <Dropdown isOpen={dropdownFilterOpen} toggle={toggleFilter}>
-            <DropdownToggle caret>Filter Flags By</DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem header>Filter by Country</DropdownItem> */}
+          <CardSubtitle tag="h6" className="mb-2 text-muted">Filter by Country: </CardSubtitle>
+
             <Form>
               {checkedFlags.map((ff) => {
                 return (
@@ -220,14 +218,13 @@ const Home = (props) => {
                       type="checkbox"
                     />
                     <Label for="InlineCheckboxes-checkbox-1" check>
-                      {ff}
+                    <CardText  tag="h6">{ff}</CardText>
                     </Label>
                   </FormGroup>
                 );
               })}
             </Form>
-            {/* </DropdownMenu>
-          </Dropdown> */}
+           
           </Col>
         </Row>
       </Nav>
