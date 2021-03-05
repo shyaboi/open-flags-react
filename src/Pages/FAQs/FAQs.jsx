@@ -20,17 +20,16 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Container, Row, Col } from "reactstrap";
 import fetchy from "../../Utils/Fetcher";
 
-function Docs() {
+function FAQs() {
   return (
     <Container>
       <Row className="mt-5"></Row>
+
       <Row className="mt-5">
         <Col className="mt-5">
           <h1>
-            New Docs page coming soon! Currently hosted on;
-            <a href="https://openflags.net/docs">
-              Open Flags Current Docs
-            </a>
+            New FAQs page coming soon! Currently hosted on;
+            <a href="https://openflags.net/faqs">Open Flags Current FAQs</a>
           </h1>
         </Col>
       </Row>
@@ -38,4 +37,4 @@ function Docs() {
   );
 }
 
-export default Docs;
+export default FAQs;

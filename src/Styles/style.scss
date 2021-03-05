@@ -42,3 +42,26 @@ h5{
 // opacity: 30%;
 // }
 @import "bootstrap";
+
+.ninjaVanish{
+  padding: 0;
+  margin: 0;
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  transition: visibility 0s linear 500ms, opacity 500ms;
+}
+.ninja{
+
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  transition: visibility 0s linear 0s, opacity 500ms;
+}
+
+.dropButt{
+
+  
+
+}

@@ -14,6 +14,7 @@ import {
   FormGroup,
   Label,
   Input,
+  Nav,
 } from "reactstrap";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Container, Row, Col } from "reactstrap";
@@ -24,13 +25,15 @@ let filteredFlags = [];
 let checkedFilter = [];
 const Home = (props) => {
   const [flags, setFlags] = useState([]);
-  const [filterFlags, setFilterFlags] = useState([]);
+  // const [filterFlags, setFilterFlags] = useState([]);
   const [checkedFlags, setCheckedFlags] = useState([]);
   const [dropdownSortOpen, setDropdownSortOpen] = useState(false);
-  const [dropdownFilterOpen, setDropdownFilterOpen] = useState(false);
+  const [FilterDropdown, SetFilDropdown] = useState(true);
+  const [dropArrow, setDropArrow] = useState("▼");
+  const [ninja, SetNinja] = useState("ninjaVanish");
 
   const toggleSort = () => setDropdownSortOpen((prevState) => !prevState);
-  const toggleFilter = () => setDropdownFilterOpen((prevState) => !prevState);
+  // const toggleFilter = () => setDropdownFilterOpen((prevState) => !prevState);
 
   const ok = () => {
     fetchy("https://openflags.net/all").then(async (data) => {
@@ -46,6 +49,7 @@ const Home = (props) => {
       // console.log(fSet)
       setCheckedFlags(fSet);
       // setFilterFlags(fSet);
+      SetNinja("ninjaVanish");
     });
   };
 
@@ -53,19 +57,19 @@ const Home = (props) => {
     ok();
   }, []);
 
-  const sortAZ = () => {
-    fetchy("https://openflags.net/all").then(async (data) => {
-      // console.log(flags);
-      let allFlags = await data.allFlags;
-      setFlags(allFlags);
-    });
-  };
+  // const sortAZ = () => {
+  //   // fetchy("https://openflags.net/all").then(async (data) => {
+  //     // console.log(flags);
+  //     let allFlags = flags;
+  //     setFlags(allFlags);
+  //   // });
+  // };
 
   const sortZA = () => {
-    fetchy("https://openflags.net/all").then(async (data) => {
-      let allFlags = await data.allFlags;
-      setFlags(allFlags.reverse());
-    });
+    // fetchy("https://openflags.net/all").then(async (data) => {
+    let allFlags = flags;
+    setFlags(allFlags.reverse());
+    // });
   };
 
   function compareAZ(a, b) {
@@ -87,40 +91,15 @@ const Home = (props) => {
     return 0;
   }
 
-  const handleChange = (e) => {
+  const filterCheckedFlags = (e) => {
     // while (checkedFilter != [""]) {
-      // let filterIndex = checkedFilter.indexOf(e.target.name)
-      let tar = e.target.name;
-      if (checkedFilter.includes(tar)) {
-        // console.log(filterFlags)
-        let filterIndex = checkedFilter.indexOf(tar);
-        checkedFilter.splice(filterIndex, 1);
-        console.log(checkedFilter);
-        fetchy("https://openflags.net/all").then(async (data) => {
-          let allFlags = await data.allFlags;
-          let filteredFlags = [];
-          for (let i = 0; i < checkedFilter.length; i++) {
-            const el = checkedFilter[i];
-            let fillyFlags = allFlags.filter((x) => {
-              return x.country === el;
-            });
-            filteredFlags.push(...fillyFlags);
-          }
-          console.log(checkedFilter);
-
-          setFlags(filteredFlags);
-          if (checkedFilter[0] == null) {
-            fetchy("https://openflags.net/all").then(async (data) => {
-              const allFlagz = await data.allFlags;
-              setFlags(allFlagz);
-              return;
-            });
-          }
-        });
-        return;
-      }
+    // let filterIndex = checkedFilter.indexOf(e.target.name)
+    let tar = e.target.name;
+    if (checkedFilter.includes(tar)) {
       // console.log(filterFlags)
-      checkedFilter.push(e.target.name);
+      e.target.checked = false;
+      let filterIndex = checkedFilter.indexOf(tar);
+      checkedFilter.splice(filterIndex, 1);
       console.log(checkedFilter);
       fetchy("https://openflags.net/all").then(async (data) => {
         let allFlags = await data.allFlags;
@@ -135,71 +114,123 @@ const Home = (props) => {
         console.log(checkedFilter);
 
         setFlags(filteredFlags);
+        if (checkedFilter[0] == null) {
+          fetchy("https://openflags.net/all").then(async (data) => {
+            const allFlagz = await data.allFlags;
+            setFlags(allFlagz);
+            return;
+          });
+        }
       });
       return;
+    }
+    e.target.checked = true;
+    // console.log(filterFlags)
+    checkedFilter.push(e.target.name);
+    console.log(checkedFilter);
+    fetchy("https://openflags.net/all").then(async (data) => {
+      let allFlags = await data.allFlags;
+      let filteredFlags = [];
+      for (let i = 0; i < checkedFilter.length; i++) {
+        const el = checkedFilter[i];
+        let fillyFlags = allFlags.filter((x) => {
+          return x.country === el;
+        });
+        filteredFlags.push(...fillyFlags);
+      }
+      console.log(checkedFilter);
+
+      setFlags(filteredFlags);
+    });
+    return;
     // }
   };
 
   const sortCountryAZ = () => {
-    fetchy("https://openflags.net/all").then(async (data) => {
-      let allFlags = await data.allFlags;
-      const sortObject = allFlags.sort(compareAZ);
-      console.log(sortObject);
-      setFlags(sortObject);
-    });
+    // fetchy("https://openflags.net/all").then(async (data) => {
+    // let allFlags = await data.allFlags;
+    let allFlags = flags;
+    const sortObject = allFlags.sort(compareAZ);
+    console.log(sortObject);
+    setFlags(sortObject);
   };
   const sortCountryZA = () => {
-    fetchy("https://openflags.net/all").then(async (data) => {
-      let allFlags = await data.allFlags;
-      const sortedFlags = allFlags.sort(compareZA);
-      console.log(sortedFlags);
-      // setFlags(sortObject);
-    });
+    // fetchy("https://openflags.net/all").then(async (data) => {
+    // let allFlags = await data.allFlags;
+    let allFlags = flags;
+    const sortedFlags = allFlags.sort(compareZA);
+    console.log(sortedFlags);
+    setFlags(sortedFlags);
+  };
+  const onClick = () => {
+    if (FilterDropdown === true) {
+      setDropArrow("▲");
+      SetNinja("ninja");
+
+      SetFilDropdown(false);
+    }
+    if (FilterDropdown === false) {
+      SetNinja("ninjaVanish");
+      setDropArrow("▼");
+      SetFilDropdown(true);
+    }
   };
 
   return (
     <Container className="mt-5" fluid>
-      <br></br>
-      <Row className="mt-5">
-        <Col>
-          <Dropdown isOpen={dropdownSortOpen} toggle={toggleSort}>
-            <DropdownToggle caret>Sort Flags By</DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem header>Sort By</DropdownItem>
-              <DropdownItem onClick={sortAZ}>Region A ~ Z</DropdownItem>
-              <DropdownItem onClick={sortZA}>Region Z ~ A</DropdownItem>
-              <DropdownItem onClick={sortCountryAZ}>Country A ~ Z</DropdownItem>
-              <DropdownItem onClick={sortCountryZA}>Country Z ~ A</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </Col>
-        <Col>
-          <Dropdown isOpen={dropdownFilterOpen} toggle={toggleFilter}>
+      <Row className="mt-5">^</Row>
+      <br />
+      <Row className="pt-2 ml-3 dropButt">
+        <Button size="lg" onClick={onClick}>
+          Filter & Sort {dropArrow}
+        </Button>
+      </Row>
+      <Nav className={ninja}>
+        <Row className={ninja} className="mt-5">
+          <Col>
+            <Dropdown
+              className={ninja}
+              className="ml-5"
+              isOpen={dropdownSortOpen}
+              toggle={toggleSort}
+            >
+              <DropdownToggle caret>Sort Flags By</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem header>Sort By</DropdownItem>
+                {/* <DropdownItem onClick={sortAZ}>Region A ~ Z</DropdownItem> */}
+                <DropdownItem onClick={sortZA}>Reverse A ~ Z</DropdownItem>
+                {/* <DropdownItem onClick={sortCountryAZ}>Country A ~ Z</DropdownItem> */}
+                {/* <DropdownItem onClick={sortCountryZA}>Country Z ~ A</DropdownItem> */}
+              </DropdownMenu>
+            </Dropdown>
+          </Col>
+          <Col>
+            {/* <Dropdown isOpen={dropdownFilterOpen} toggle={toggleFilter}>
             <DropdownToggle caret>Filter Flags By</DropdownToggle>
             <DropdownMenu>
-              <DropdownItem header>Filter by Country</DropdownItem>
-              <Form>
-                {checkedFlags.map((ff) => {
-                  return (
-                    <FormGroup check inline>
-                      <Input
-                        id="InlineCheckboxes-checkbox-1"
-                        name={ff}
-                        onChange={handleChange}
-                        type="checkbox"
-                      />
-                      <Label for="InlineCheckboxes-checkbox-1" check>
-                        {ff}
-                      </Label>
-                    </FormGroup>
-                  );
-                })}
-              </Form>
-            </DropdownMenu>
-          </Dropdown>
-        </Col>
-      </Row>
-
+              <DropdownItem header>Filter by Country</DropdownItem> */}
+            <Form>
+              {checkedFlags.map((ff) => {
+                return (
+                  <FormGroup check inline>
+                    <Input
+                      id="InlineCheckboxes-checkbox-1"
+                      name={ff}
+                      onChange={filterCheckedFlags}
+                      type="checkbox"
+                    />
+                    <Label for="InlineCheckboxes-checkbox-1" check>
+                      {ff}
+                    </Label>
+                  </FormGroup>
+                );
+              })}
+            </Form>
+            {/* </DropdownMenu>
+          </Dropdown> */}
+          </Col>
+        </Row>
+      </Nav>
       <Row xl="3" lg="2" md="1" xs="1" fluid>
         {flags.map((fl) => {
           return (
