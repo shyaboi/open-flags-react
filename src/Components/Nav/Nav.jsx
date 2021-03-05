@@ -68,17 +68,10 @@ const Navi = (props) => {
           <NavItem>
             <NavLink href="/docs">Docs</NavLink>
           </NavItem>
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-              Options
-            </DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
+
+          <NavItem>
+            <NavLink href="/faqs">FAQs</NavLink>
+          </NavItem>
         </Nav>
         <NavbarText>
           <Form>
