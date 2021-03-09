@@ -1,9 +1,10 @@
 {
-  "homepage": "https://shyaboi.github.io/open-flags-react",
+  "homepage": "https://openflags.net/",
   "name": "open-flags-react-front",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tenon-io/tenon-codeblock": "^1.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

@@ -34,16 +34,22 @@ There are several enpoints that you can get flag data from
 The basic breakdown of routes is as follows;
 ```
 //will return a random direct link to a flag .svg
-GET https://openflags.net/rando     
+          GET https://openflags.net/rando     
+          
+          //will return JSON of availible flagInfo based on country/region search
+          GET https://openflags.net/api/json/flagInfo/:country/:region   
+          
+          //will return JSON of availible flagInfo based on ISO 3166 region code
+          GET https://openflags.net/api/json/ISO3166/:regionCode    
+          
+          //will return a direct link to the .svg flag at that country/region
+          GET https://openflags.net/:country/:region/:region.svg
+          
+          //will return an array of JSON objects of all flags from the :country on the Open Flags API
+          GET https://openflags.net/api/list/country/:country
 
-//will return JSON of availible flagInfo based on country/region search
-GET https://openflags.net/api/json/flagInfo/:country/:region   
-
-//will return JSON of availible flagInfo based on ISO 3166 region code
-GET https://openflags.net/api/json/ISO3166/:regionCode    
-
-//will return a direct link to the .svg flag at that country/region
-https://openflags.net/:country/:region/:region.svg
+          //will return an array of JSON objects of all flags availible on the Open Flags API
+          GET https://openflags.net/all
 ```
 
 # cURL Usage
