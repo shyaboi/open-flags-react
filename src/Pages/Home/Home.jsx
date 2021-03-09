@@ -57,13 +57,7 @@ const Home = (props) => {
     ok();
   }, []);
 
-  // const sortAZ = () => {
-  //   // fetchy("https://openflags.net/all").then(async (data) => {
-  //     // console.log(flags);
-  //     let allFlags = flags;
-  //     setFlags(allFlags);
-  //   // });
-  // };
+
 
   const sortZA = () => {
     // fetchy("https://openflags.net/all").then(async (data) => {
@@ -146,22 +140,22 @@ const Home = (props) => {
     // }
   };
 
-  const sortCountryAZ = () => {
-    // fetchy("https://openflags.net/all").then(async (data) => {
-    // let allFlags = await data.allFlags;
-    let allFlags = flags;
-    const sortObject = allFlags.sort(compareAZ);
-    console.log(sortObject);
-    setFlags(sortObject);
-  };
-  const sortCountryZA = () => {
-    // fetchy("https://openflags.net/all").then(async (data) => {
-    // let allFlags = await data.allFlags;
-    let allFlags = flags;
-    const sortedFlags = allFlags.sort(compareZA);
-    console.log(sortedFlags);
-    setFlags(sortedFlags);
-  };
+  // const sortCountryAZ = () => {
+  //   // fetchy("https://openflags.net/all").then(async (data) => {
+  //   // let allFlags = await data.allFlags;
+  //   let allFlags = flags;
+  //   const sortObject = allFlags.sort(compareAZ);
+  //   console.log(sortObject);
+  //   setFlags(sortObject);
+  // };
+  // const sortCountryZA = () => {
+  //   // fetchy("https://openflags.net/all").then(async (data) => {
+  //   // let allFlags = await data.allFlags;
+  //   let allFlags = flags;
+  //   const sortedFlags = allFlags.sort(compareZA);
+  //   console.log(sortedFlags);
+  //   setFlags(sortedFlags);
+  // };
   const onClick = () => {
     if (FilterDropdown === true) {
       setDropArrow("▲");

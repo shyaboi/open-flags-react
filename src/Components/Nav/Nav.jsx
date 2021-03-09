@@ -41,7 +41,7 @@ const Navi = (props) => {
   let setNav = async () => {
     let loc = window.location.href.toString();
     console.log(loc.length);
-    if (loc.length > 24) {
+    if (loc.length > 33) {
       setNavPos("fixed-bottom nav");
     }
     if (loc.length < 24) {
@@ -51,7 +51,7 @@ const Navi = (props) => {
   };
 
   useEffect(() => {
-    // setNav();
+    setNav();
     fetcher()
   }, []);
 
@@ -87,8 +87,8 @@ const Navi = (props) => {
               </NavItem>
 
               <NavItem>
-                <NavLink disabled href="/faqs">
-                  FAQs coming soon
+                <NavLink  href="/ufaqs">
+                  FAQs
                 </NavLink>
               </NavItem>
             </Nav>
@@ -116,9 +116,9 @@ const Navi = (props) => {
           <Route exact path="/docs">
             <Docs />
           </Route>
-          {/* <Route exact path="/faqs">
+          <Route exact path="/ufaqs">
             <FAQs />
-          </Route> */}
+          </Route>
           s{" "}
         </Switch>
       </div>
