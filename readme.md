@@ -98,7 +98,7 @@ flagInfo":
 # Javascript Fetch Usage
 To use a Javascript fetch request to get information into your JS code. you can make a similar request as the example below;
 ```
-fetch('https://openflags.net/api/usa/colorado')
+fetch('https://openflags.net/api/json/flagInfo/usa/colorado')
   .then(response => response.json())
   .then(data => console.log(data));
   ```
