@@ -332,7 +332,7 @@ flagInfo":
             <Container>
               <Row>
                 <Col>
-                  <h4>JavaScript Fetch Useage</h4>
+                  <h2>JavaScript Fetch Usage</h2>
                   <hr />
                 </Col>
               </Row>
@@ -478,7 +478,7 @@ https://openflags.net/usa/region/colorado.svg`}
             <Container>
               <Row>
                 <Col>
-                  <h2>Node.js Useage</h2>
+                  <h2>Node.js Usage</h2>
                   <hr />
                 </Col>
               </Row>
@@ -721,7 +721,7 @@ flagInfo":
           <TabPane tabId="7">
             <Row>
               <Col>
-                <h2>Python Useage</h2>
+                <h2>Python Usage</h2>
                 <hr />
               </Col>
             </Row>
