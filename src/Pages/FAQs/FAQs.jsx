@@ -121,7 +121,6 @@ const FAQs = (props) => {
                   <Button type="submit" className="btn btn-other" onClick={toggle}>
                       Submit
                     </Button>
-                  
                 </Col>
               </Row>
             </Form>
