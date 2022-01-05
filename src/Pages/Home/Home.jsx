@@ -20,6 +20,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Container, Row, Col } from "reactstrap";
 import fetchy from "../../Utils/Fetcher";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import bb from '../../Utils/BASE_URLs'
+const BASE_API_URL = bb.BASE_API_URL
 
 let filteredFlags = [];
 let checkedFilter = [];
@@ -36,7 +38,7 @@ const Home = (props) => {
   // const toggleFilter = () => setDropdownFilterOpen((prevState) => !prevState);
 
   const ok = () => {
-    fetchy("https://openflags.net/all").then(async (data) => {
+    fetchy(`${BASE_API_URL}/all`).then(async (data) => {
       const allFlagz = await data.allFlags;
       setFlags(allFlagz);
       //make a set to take out repeat vals
@@ -60,7 +62,7 @@ const Home = (props) => {
 
 
   const sortZA = () => {
-    // fetchy("https://openflags.net/all").then(async (data) => {
+    // fetchy("http://localhost:4443/all").then(async (data) => {
     let allFlags = flags;
     setFlags(allFlags.reverse());
     // });
@@ -95,7 +97,7 @@ const Home = (props) => {
       let filterIndex = checkedFilter.indexOf(tar);
       checkedFilter.splice(filterIndex, 1);
       console.log(checkedFilter);
-      fetchy("https://openflags.net/all").then(async (data) => {
+      fetchy("http://localhost:4443/all").then(async (data) => {
         let allFlags = await data.allFlags;
         let filteredFlags = [];
         for (let i = 0; i < checkedFilter.length; i++) {
@@ -109,7 +111,7 @@ const Home = (props) => {
 
         setFlags(filteredFlags);
         if (checkedFilter[0] == null) {
-          fetchy("https://openflags.net/all").then(async (data) => {
+          fetchy(`${BASE_API_URL}/all`).then(async (data) => {
             const allFlagz = await data.allFlags;
             setFlags(allFlagz);
             return;
@@ -122,7 +124,7 @@ const Home = (props) => {
     // console.log(filterFlags)
     checkedFilter.push(e.target.name);
     console.log(checkedFilter);
-    fetchy("https://openflags.net/all").then(async (data) => {
+    fetchy(`${BASE_API_URL}/all`).then(async (data) => {
       let allFlags = await data.allFlags;
       let filteredFlags = [];
       for (let i = 0; i < checkedFilter.length; i++) {
@@ -141,7 +143,7 @@ const Home = (props) => {
   };
 
   // const sortCountryAZ = () => {
-  //   // fetchy("https://openflags.net/all").then(async (data) => {
+  //   // fetchy("http://localhost:4443/all").then(async (data) => {
   //   // let allFlags = await data.allFlags;
   //   let allFlags = flags;
   //   const sortObject = allFlags.sort(compareAZ);
@@ -149,7 +151,7 @@ const Home = (props) => {
   //   setFlags(sortObject);
   // };
   // const sortCountryZA = () => {
-  //   // fetchy("https://openflags.net/all").then(async (data) => {
+  //   // fetchy("http://localhost:4443/all").then(async (data) => {
   //   // let allFlags = await data.allFlags;
   //   let allFlags = flags;
   //   const sortedFlags = allFlags.sort(compareZA);
@@ -229,7 +231,7 @@ const Home = (props) => {
               <Card>
                 <a
                   href={
-                    "https://openflags.net/" +
+                    `${BASE_API_URL}/` +
                     fl.country +
                     "/region/" +
                     fl.region +
@@ -239,12 +241,12 @@ const Home = (props) => {
                   <LazyLoadImage
                     id="pics"
                     // placeholder={baser}
-                    placeholderSrc={fl.directLink}
+                    placeholderSrc={`${BASE_API_URL}/${fl.country}/region/${fl.region}.svg`}
                     alt=""
                     threshold="1"
                     effect="blur"
                     delayMethod="debounce"
-                    src={fl.directLink} // use normal <img> attributes as props
+                    src={`${BASE_API_URL}/${fl.country}/region/${fl.region}.svg`} // use normal <img> attributes as props
                     width="100%"
                     height="300vm"
                     opacity="50"
@@ -262,12 +264,7 @@ const Home = (props) => {
                   <CardText>ISO 3166 Code(s): {fl.ISO3166}</CardText>
                   <Col>
                     <Button
-                      href={
-                        "https://openflags.net/" +
-                        fl.country +
-                        "/region/" +
-                        fl.region +
-                        ".svg"
+                      href={`${BASE_API_URL}/${fl.country}/region/${fl.region}.svg`
                       }
                       className="button mt-3 mb-3 purple-gradient"
                       color="other"
@@ -280,11 +277,7 @@ const Home = (props) => {
                   <Col>
                     <Button
                       href={
-                        "https://openflags.net/api/json/flagInfo/" +
-                        fl.country +
-                        "/" +
-                        fl.region
-                      }
+                        `${BASE_API_URL}/api/json/flagInfo/${fl.country}/${fl.region}`}
                       className="button mt-3 mb-3"
                       color="dinus"
                       size="lg"
@@ -293,9 +286,6 @@ const Home = (props) => {
                       JSON Link
                     </Button>
                   </Col>
-                  {/* <Col>
-                <Button className='button mt-3 mb-3 bg-cc' color="primary" size="lg" block>Button</Button>
-                </Col> */}
                 </CardBody>
               </Card>
             </Col>

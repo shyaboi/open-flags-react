@@ -28,7 +28,7 @@ const FAQs = (props) => {
   const toggle = () => setModal(!modal);
 
   const ok = (props) => {
-    fetchy("https://openflags.net/faqs").then(async (data) => {
+    fetchy("http://localhost:4443/faqs").then(async (data) => {
       console.log(data);
       let d = data.faq;
       console.log(d);
@@ -51,7 +51,7 @@ const FAQs = (props) => {
             </Col>
           </Row>
           <Container>
-            <Form method="POST" action="https://openflags.net/newfaq">
+            <Form method="POST" action="http://localhost:4443/newfaq">
               <Row xs="1" md="2">
                 <Col>
                   <FormGroup>
