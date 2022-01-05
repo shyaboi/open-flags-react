@@ -19,4 +19,4 @@ COPY . ./
 # start app
 CMD ["npm", "start"]
 
-EXPOSE 3000
+EXPOSE 4443
