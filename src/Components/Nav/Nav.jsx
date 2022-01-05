@@ -32,7 +32,7 @@ const Navi = (props) => {
   const [navPos, setNavPos] = useState("fixed-top nav");
 
   const fetcher = () => {
-    fetchy("https://openflags.net/rando").then(async (data) => {
+    fetchy("http://localhost:4443/rando").then(async (data) => {
       let rando = await data;
       setRando(rando);
     });

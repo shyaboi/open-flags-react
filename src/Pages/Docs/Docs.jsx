@@ -186,22 +186,22 @@ They just want big chunks of example code that gets the job done with minimal ch
                   <CodeBlock
                     codeString={`
           //will return a random direct link to a flag .svg
-          GET https://openflags.net/rando     
+          GET http://localhost:4443/rando     
           
           //will return JSON of availible flagInfo based on country/region search
-          GET https://openflags.net/api/json/flagInfo/:country/:region   
+          GET http://localhost:4443/api/json/flagInfo/:country/:region   
           
           //will return JSON of availible flagInfo based on ISO 3166 region code
-          GET https://openflags.net/api/json/ISO3166/:regionCode    
+          GET http://localhost:4443/api/json/ISO3166/:regionCode    
           
           //will return a direct link to the .svg flag at that country/region
-          GET https://openflags.net/:country/:region/:region.svg
+          GET http://localhost:4443/:country/:region/:region.svg
           
           //will return an array of JSON objects of all flags from the :country on the Open Flags API
-          GET https://openflags.net/api/list/country/:country
+          GET http://localhost:4443/api/list/country/:country
           
           //will return an array of JSON objects of all flags availible on the Open Flags API
-          GET https://openflags.net/all`}
+          GET http://localhost:4443/all`}
                   />
                 </Col>
               </Row>
@@ -227,7 +227,7 @@ They just want big chunks of example code that gets the job done with minimal ch
               <Row>
                 <Col>
                   <CodeBlock
-                    codeString={`curl https://openflags.net/api/json/flagInfo/usa/colorado`}
+                    codeString={`curl http://localhost:4443/api/json/flagInfo/usa/colorado`}
                   />
                 </Col>
               </Row>
@@ -269,7 +269,7 @@ They just want big chunks of example code that gets the job done with minimal ch
               </Row>
               <CodeBlock
                 codeString={`
-curl https://openflags.net/usa/region/colorado.svg`}
+curl http://localhost:4443/usa/region/colorado.svg`}
               />
               <Row>
                 <Col>
@@ -297,7 +297,7 @@ curl https://openflags.net/usa/region/colorado.svg`}
                 <Col>
                   <CodeBlock
                     codeString={`
-https://openflags.net/api/json/flagInfo/usa/colorado`}
+http://localhost:4443/api/json/flagInfo/usa/colorado`}
                   />
                 </Col>
               </Row>
@@ -317,7 +317,7 @@ https://openflags.net/api/json/flagInfo/usa/colorado`}
 flagInfo":
 [{
             "_id":"5f51ca2c7cf1026aa0a50f95",
-            "directLink":"https://openflags.net/usa/region/colorado.svg",
+            "directLink":"http://localhost:4443/usa/region/colorado.svg",
             "quickLink":"colorado.svg",
             "region":"colorado",
             "country":"usa"
@@ -349,7 +349,7 @@ flagInfo":
                 <Col>
                   <CodeBlock
                     codeString={`
-fetch('https://openflags.net/api/json/flagInfo/usa/colorado')
+fetch('http://localhost:4443/api/json/flagInfo/usa/colorado')
 .then(response => response.json())
 .then(data => console.log(data));`}
                   />
@@ -371,7 +371,7 @@ fetch('https://openflags.net/api/json/flagInfo/usa/colorado')
 flagInfo: Array(1)
 0:
 country: "usa"
-directLink: "https://openflags.net/usa/region/colorado.svg"
+directLink: "http://localhost:4443/usa/region/colorado.svg"
 quickLink: "colorado.svg"
 region: "colorado"
 regionCode:'US-CO'
@@ -397,7 +397,7 @@ __proto__: Object`}
                 <Col>
                   <CodeBlock
                     codeString={`
-fetch('https://openflags.net/api/usa/colorado')
+fetch('http://localhost:4443/api/usa/colorado')
 .then(response => response.json())
 .then(data => console.log(data.flagInfo[0]));
 The data.flagInfo[0] will return a JSON object from the input and desired region, and country.`}
@@ -416,14 +416,14 @@ The data.flagInfo[0] will return a JSON object from the input and desired region
                 <Col>
                   <CodeBlock
                     codeString={`{
-_id: "5f51ca2c7cf1026aa0a50f95", directLink: "https://openflags.net/usa/region/colorado.svg", 
+_id: "5f51ca2c7cf1026aa0a50f95", directLink: "http://localhost:4443/usa/region/colorado.svg", 
 quickLink: "colorado.svg", 
 region: "colorado", 
 country: "usa"
 regionCode:'US-CO'
 }
 country: "usa"
-directLink: "https://openflags.net/usa/region/colorado.svg"
+directLink: "http://localhost:4443/usa/region/colorado.svg"
 quickLink: "colorado.svg"
 region: "colorado"
 _id: "5f51ca2c7cf1026aa0a50f95"
@@ -444,7 +444,7 @@ __proto__: Object`}
                 <Col>
                   <CodeBlock
                     codeString={`
-fetch('https://openflags.net/api/usa/colorado')
+fetch('http://localhost:4443/api/usa/colorado')
 .then(response => response.json())
 .then(data => {
 const flagPicLink =  data.flagInfo[0].directLink
@@ -468,7 +468,7 @@ console.log(flagPicLink)
                 <Col>
                   <CodeBlock
                     codeString={`
-https://openflags.net/usa/region/colorado.svg`}
+http://localhost:4443/usa/region/colorado.svg`}
                   />
                 </Col>
               </Row>
@@ -502,7 +502,7 @@ https://openflags.net/usa/region/colorado.svg`}
                     codeString={`
 const https = require('https');
 
-https.get('https://openflags.net/api/usa/colorado', (response) => {
+https.get('http://localhost:4443/api/usa/colorado', (response) => {
 let data = '';
 
 // called when a data chunk is received.
@@ -539,7 +539,7 @@ console.log("Error: " + error.message);
 flagInfo: [
  {
 _id: '5f51ca2c7cf1026aa0a50f95',
-directLink: 'https://openflags.net/usa/region/colorado.svg',
+directLink: 'http://localhost:4443/usa/region/colorado.svg',
 quickLink: 'colorado.svg',
 region: 'colorado',
 country: 'usa',
@@ -566,7 +566,7 @@ regionCode:'US-CO'
                     codeString={`
 const https = require('https');
 
-https.get('https://openflags.net/api/usa/colorado', (response) => {
+https.get('http://localhost:4443/api/usa/colorado', (response) => {
 let data = '';
 
 // called when a data chunk is received.
@@ -602,7 +602,7 @@ console.log("Error: " + error.message);
 flagInfo: [
   {
     _id: '5f51ca2c7cf1026aa0a50f95',
-    directLink: 'https://openflags.net/usa/region/colorado.svg',
+    directLink: 'http://localhost:4443/usa/region/colorado.svg',
     quickLink: 'colorado.svg',
     region: 'colorado',
     country: 'usa'
@@ -628,7 +628,7 @@ flagInfo: [
                     codeString={`
 const https = require('https');
 
-https.get('https://openflags.net/api/usa/colorado', (response) => {
+https.get('http://localhost:4443/api/usa/colorado', (response) => {
 let data = '';
 
 // called when a data chunk is received.
@@ -662,7 +662,7 @@ console.log("Error: " + error.message);
                 <Col>
                   <CodeBlock
                     codeString={`
-"https://openflags.net/usa/region/colorado.svg"`}
+"http://localhost:4443/usa/region/colorado.svg"`}
                   />
                 </Col>
               </Row>
@@ -687,7 +687,7 @@ console.log("Error: " + error.message);
               <Col>
                 <CodeBlock
                   codeString={`
-$.get( "https://openflags.net/rando", function( data ) {
+$.get( "http://localhost:4443/rando", function( data ) {
 console.log(data)
 })`}
                 />
@@ -708,7 +708,7 @@ console.log(data)
 flagInfo":
 [{
   "_id":"5f51ca2c7cf1026aa0a50f95",
-  "directLink":"https://openflags.net/usa/region/colorado.svg",
+  "directLink":"http://localhost:4443/usa/region/colorado.svg",
   "quickLink":"colorado.svg",
   "region":"colorado",
   "country":"usa"
@@ -755,7 +755,7 @@ pip install requests`}
                   codeString={`
 import requests
 
-response = requests.get("https://openflags.net/api/usa/california")
+response = requests.get("http://localhost:4443/api/usa/california")
 
 data = response.json()
 
@@ -776,7 +776,7 @@ print(data)`}
 'flagInfo': 
   [{
       '_id': '5f7e5591a46a711d00667b40', 
-      'directLink': 'https://openflags.net/usa/region/california.svg', 
+      'directLink': 'http://localhost:4443/usa/region/california.svg', 
       'quickLink': 'california.svg', 
       'region': 'california', 
       'country': 'usa', 
